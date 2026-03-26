@@ -44,7 +44,7 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <title>Lizard Coin Tracker</title>
     </head>
-    <body data-market-view="market">
+    <body data-market-view="watchlist">
         <header>
             <nav class="navbar navbar-expand-lg" id="Navbackgroundcolor">
                 <div class="container-fluid">
@@ -70,12 +70,14 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link" id="nav-cc-id" href="./crypto.html"
+                                <a class="nav-link" href="./crypto.html"
                                     >Crypto Currencies</a
                                 >
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./watchlist.html">Watch List</a>
+                                <a class="nav-link" href="./watchlist.html"
+                                    >Watch List</a
+                                >
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./learnmore.html"
@@ -89,9 +91,7 @@
         </header>
 
         <section class="crypto-section">
-            <h3 id="crypto-header" class="pt-5 pb-3">
-                Crypto Currencies by Market Cap
-            </h3>
+            <h3 id="crypto-header" class="pt-5 pb-3">Your Watch List</h3>
             <p id="table-status" class="table-status" aria-live="polite"></p>
             <div id="crypto-table">
                 <table>
@@ -112,10 +112,6 @@
                     <tbody></tbody>
                 </table>
             </div>
-        </section>
-        <section class="market-prices">
-            <div></div>
-            <!---This div will be for the crypto prices-->
         </section>
         <footer class="footer">
             <div id="footer-title">

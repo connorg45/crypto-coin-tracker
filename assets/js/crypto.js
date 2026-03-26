@@ -1,436 +1,329 @@
-// major issue, you have to click watch list twice coming from lean more
-
-document.addEventListener('DOMContentLoaded', function () {
-    var nav = document.getElementById('nav-cc-id');
-    nav.addEventListener('click', function () {
-        console.log('Hello World!');
-    });
-});
-
-let watchListArr = JSON.parse(localStorage.getItem('watchListArr')) || [];
-// let watchListArr = [];
-
-const url =
+const WATCHLIST_STORAGE_KEY = 'watchListCoinIds';
+const LEGACY_WATCHLIST_KEY = 'watchListArr';
+const MARKET_DATA_URL =
     'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h.7d&locale=en';
 
-fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        // Data from api is looped through and html elements are created and appended to dom (data from api is set to elements)
-        console.log(data);
-        function createTableRows() {
-            for (let i = 0; i < data.length; i++) {
-                const row = document.createElement('tr');
+const tableBody = document.querySelector('tbody');
+const statusMessage = document.getElementById('table-status');
+const pageTitle = document.getElementById('crypto-header');
+const pageMode = document.body.dataset.marketView || 'market';
 
-                const starData = document.createElement('td');
-                starData.classList.add('star');
-                if (watchListArr.includes(i)) {
-                    starData.innerHTML = `<button class="filled" id="star-button-${i}"></button>`;
-                } else {
-                    starData.innerHTML = `<button class="unfilled" id="star-button-${i}"></button>`;
-                }
-                // starData.innerHTML = `<button class="unfilled" id="star-button-${i}"></button>`;
-                const coinNumberData = document.createElement('td');
-                coinNumberData.classList.add('coin-number');
-                coinNumberData.textContent = i + 1;
+function setStatus(message) {
+    if (!statusMessage) {
+        return;
+    }
 
-                const actualCoinData = document.createElement('td');
-                actualCoinData.classList.add('actual-coin');
-                const coinInfo = document.createElement('div');
-                coinInfo.classList.add('coin-info-div');
-                const coinLogoData = document.createElement('img');
-                coinLogoData.classList.add('coin-logo');
-                coinLogoData.src = data[i].image;
-                const coinNameDataSpan = document.createElement('span');
-                coinNameDataSpan.classList.add('coin-name');
-                coinNameDataSpan.textContent =
-                    data[i].id.charAt(0).toUpperCase() + data[i].id.slice(1);
-                const coinAbrvData = document.createElement('span');
-                coinAbrvData.classList.add('coin-abrv');
-                coinAbrvData.textContent = data[i].symbol;
+    statusMessage.textContent = message;
+}
 
-                const actualPriceData = document.createElement('td');
-                actualPriceData.classList.add('actual-price-td');
-                const coinPriceData = document.createElement('div');
-                coinPriceData.classList.add('coin-price-data-div');
-                const coinPriceSpan = document.createElement('span');
-                coinPriceSpan.classList.add('coin-price');
-                coinPriceSpan.textContent = data[
-                    i
-                ].current_price.toLocaleString('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                });
+function clearStatus() {
+    setStatus('');
+}
 
-                const actual24hrPercentData = document.createElement('td');
-                actual24hrPercentData.classList.add('actual-24hr-%');
-                const coin24hrPercentData = document.createElement('div');
-                coin24hrPercentData.classList.add('coin-24hr-percent-data-div');
-                const coin24hrPercentSpan = document.createElement('span');
-                coin24hrPercentSpan.classList.add('coin-percent-24hr');
-                coin24hrPercentSpan.textContent = `${data[
-                    i
-                ].price_change_percentage_24h.toFixed(2)}\%`;
-                if (data[i].price_change_percentage_24h.toFixed(2) > 0) {
-                    coin24hrPercentSpan.style.color = 'green';
-                } else {
-                    coin24hrPercentSpan.style.color = 'red';
-                }
+function loadWatchlistIds() {
+    const savedWatchlist = localStorage.getItem(WATCHLIST_STORAGE_KEY);
 
-                const actual7dData = document.createElement('td');
-                actual7dData.classList.add('acutal-7d-%');
-                const coin7dPercentDataDiv = document.createElement('div');
-                coin7dPercentDataDiv.classList.add('coin-7d-percent-data-div');
-                const coinPercent7dSpan = document.createElement('span');
-                coinPercent7dSpan.classList.add('coin-percent-7d');
-                coinPercent7dSpan.textContent = data[i].high_24h.toLocaleString(
-                    'en-US',
-                    { style: 'currency', currency: 'USD' }
-                );
+    if (!savedWatchlist) {
+        localStorage.removeItem(LEGACY_WATCHLIST_KEY);
+        return [];
+    }
 
-                const actual24hrVolumeData = document.createElement('td');
-                actual24hrVolumeData.classList.add('actual-24hr-volume');
-                const coin24hrVolumeDataDiv = document.createElement('div');
-                coin24hrVolumeDataDiv.classList.add(
-                    'coin-24hr-volume-data-div'
-                );
-                const coin24hrVolumeSpan = document.createElement('span');
-                coin24hrVolumeSpan.classList.add('coin-24hr-volume');
-                coin24hrVolumeSpan.textContent = data[i].ath.toLocaleString(
-                    'en-US',
-                    { style: 'currency', currency: 'USD' }
-                );
+    try {
+        const parsedWatchlist = JSON.parse(savedWatchlist);
 
-                const actualMktCapData = document.createElement('td');
-                actualMktCapData.classList.add('actual-mkt-cap');
-                const coinMktCapDataDiv = document.createElement('div');
-                coinMktCapDataDiv.classList.add('coin-mkt-cap-data-div');
-                const coinMktCapSpan = document.createElement('span');
-                coinMktCapSpan.classList.add('coin-mkt-cap');
-                coinMktCapSpan.textContent = `${data[
-                    i
-                ].ath_change_percentage.toFixed(2)}\%`;
-                if (data[i].ath_change_percentage.toFixed(2) > 0) {
-                    coinMktCapSpan.style.color = 'green';
-                } else {
-                    coinMktCapSpan.style.color = 'red';
-                }
-
-                const sevenDayChartData = document.createElement('td');
-                sevenDayChartData.classList.add('7-day-chart-td');
-                const sevenDaychartImg = document.createElement('div');
-                sevenDaychartImg.classList.add('sevenDayChart');
-                const mktCapSpan = document.createElement('span');
-                mktCapSpan.classList.add('mkt-cap-span');
-                mktCapSpan.textContent = data[i].market_cap.toLocaleString(
-                    'en-US',
-                    {
-                        style: 'currency',
-                        currency: 'USD',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                    }
-                );
-
-                // Append
-                const tbody = document.querySelector('tbody');
-
-                tbody.appendChild(row);
-                row.appendChild(starData);
-                row.appendChild(coinNumberData);
-
-                coinInfo.appendChild(coinLogoData);
-                coinInfo.appendChild(coinNameDataSpan);
-                coinInfo.appendChild(coinAbrvData);
-                actualCoinData.appendChild(coinInfo);
-                row.appendChild(actualCoinData);
-
-                coinPriceData.appendChild(coinPriceSpan);
-                actualPriceData.appendChild(coinPriceData);
-                row.appendChild(actualPriceData);
-
-                coin24hrPercentData.appendChild(coin24hrPercentSpan);
-                actual24hrPercentData.appendChild(coin24hrPercentData);
-                row.appendChild(actual24hrPercentData);
-
-                coin7dPercentDataDiv.appendChild(coinPercent7dSpan);
-                actual7dData.appendChild(coin7dPercentDataDiv);
-                row.appendChild(actual7dData);
-
-                coin24hrVolumeDataDiv.appendChild(coin24hrVolumeSpan);
-                actual24hrVolumeData.appendChild(coin24hrVolumeDataDiv);
-                row.appendChild(actual24hrVolumeData);
-
-                coinMktCapDataDiv.appendChild(coinMktCapSpan);
-                actualMktCapData.appendChild(coinMktCapDataDiv);
-                row.appendChild(actualMktCapData);
-
-                sevenDaychartImg.appendChild(mktCapSpan);
-                sevenDayChartData.appendChild(sevenDaychartImg);
-                row.appendChild(sevenDayChartData);
-
-                // Styling
-                const symbols = document.querySelectorAll('.coin-abrv');
-                symbols[i].style.paddingLeft = '5px';
-            }
-        }
-        createTableRows();
-
-        // Avoids duplicates being added to wl, changes star icon and adds to local storage
-        for (let i = 0; i < data.length; i++) {
-            // Get star button for each item
-            const starButton = document.getElementById(`star-button-${i}`);
-            // Listen for when star is clicked, grabs whole row and checks if it has been clicked already to avoid duplicates
-            starButton.addEventListener('click', function (event) {
-                const row = event.target.parentNode.parentNode;
-                console.log(row);
-
-                const arrIndex =
-                    row.getElementsByClassName('coin-number')[0].textContent -
-                    1;
-                // if its not apart of the watch list
-                if (!watchListArr.includes(arrIndex)) {
-                    starButton.classList.remove('unfilled');
-                    starButton.classList.add('filled');
-                    watchListArr.push(arrIndex);
-                    localStorage.setItem(`star-button-${i}`, 'filled');
-                    // console.log(watchListArr);
-                } else if (watchListArr.includes(arrIndex)) {
-                    starButton.classList.remove('filled');
-                    starButton.classList.add('unfilled');
-                    console.log(watchListArr);
-                    let index = watchListArr.indexOf(arrIndex);
-                    watchListArr.splice(index, 1);
-                    localStorage.removeItem(`star-button-${i}`);
-                    console.log(watchListArr);
-                }
-                // Save watchListArr to local storage
-                localStorage.setItem(
-                    'watchListArr',
-                    JSON.stringify(watchListArr)
-                );
-
-                // Check if the star button is stored in local storage and update its class accordingly
-                if (localStorage.getItem(`star-button-${i}`) === 'filled') {
-                    starButton.classList.remove('unfilled');
-                    starButton.classList.add('filled');
-                }
-            });
+        if (!Array.isArray(parsedWatchlist)) {
+            localStorage.removeItem(WATCHLIST_STORAGE_KEY);
+            localStorage.removeItem(LEGACY_WATCHLIST_KEY);
+            return [];
         }
 
-        // When Watchlist is clicked current tables are cleared and watchListArr is looped through and appended
-        const navWatchList = document.getElementById('nav-wl-id');
-        navWatchList.addEventListener('click', function (event) {
-            event.preventDefault();
-            const tbody2 = document.querySelector('tbody');
-            tbody2.innerHTML = ' ';
-            // Creates watchlist
-            for (let i = 0; i < watchListArr.length; i++) {
-                const currentIndex = watchListArr[i];
-                console.log(currentIndex);
-                console.log(watchListArr.length);
-                const row = document.createElement('tr');
+        const validCoinIds = parsedWatchlist.filter(function (coinId) {
+            return typeof coinId === 'string' && coinId.trim() !== '';
+        });
 
-                const starData = document.createElement('td');
-                starData.classList.add('star');
-                starData.innerHTML = `<button class="filled" id="star-button-${currentIndex}"></button>`;
-                const coinNumberData = document.createElement('td');
-                coinNumberData.classList.add('coin-number');
-                coinNumberData.textContent = currentIndex + 1;
+        if (validCoinIds.length !== parsedWatchlist.length) {
+            localStorage.setItem(
+                WATCHLIST_STORAGE_KEY,
+                JSON.stringify(validCoinIds)
+            );
+        }
 
-                const actualCoinData = document.createElement('td');
-                actualCoinData.classList.add('actual-coin');
-                const coinInfo = document.createElement('div');
-                coinInfo.classList.add('coin-info-div');
-                const coinLogoData = document.createElement('img');
-                coinLogoData.classList.add('coin-logo');
-                coinLogoData.src = data[currentIndex].image;
-                const coinNameDataSpan = document.createElement('span');
-                coinNameDataSpan.classList.add('coin-name');
-                coinNameDataSpan.textContent =
-                    data[currentIndex].id.charAt(0).toUpperCase() +
-                    data[currentIndex].id.slice(1);
-                const coinAbrvData = document.createElement('span');
-                coinAbrvData.classList.add('coin-abrv');
-                coinAbrvData.textContent = data[currentIndex].symbol;
+        localStorage.removeItem(LEGACY_WATCHLIST_KEY);
+        return validCoinIds;
+    } catch (error) {
+        localStorage.removeItem(WATCHLIST_STORAGE_KEY);
+        localStorage.removeItem(LEGACY_WATCHLIST_KEY);
+        return [];
+    }
+}
 
-                const actualPriceData = document.createElement('td');
-                actualPriceData.classList.add('actual-price-td');
-                const coinPriceData = document.createElement('div');
-                coinPriceData.classList.add('coin-price-data-div');
-                const coinPriceSpan = document.createElement('span');
-                coinPriceSpan.classList.add('coin-price');
-                coinPriceSpan.textContent = data[
-                    currentIndex
-                ].current_price.toLocaleString('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                });
+let watchlistIds = loadWatchlistIds();
 
-                const actual24hrPercentData = document.createElement('td');
-                actual24hrPercentData.classList.add('actual-24hr-%');
-                const coin24hrPercentData = document.createElement('div');
-                coin24hrPercentData.classList.add('coin-24hr-percent-data-div');
-                const coin24hrPercentSpan = document.createElement('span');
-                coin24hrPercentSpan.classList.add('coin-percent-24hr');
-                coin24hrPercentSpan.textContent = `${data[
-                    currentIndex
-                ].price_change_percentage_24h.toFixed(2)}\%`;
-                if (
-                    data[currentIndex].price_change_percentage_24h.toFixed(2) >
-                    0
-                ) {
-                    coin24hrPercentSpan.style.color = 'green';
-                } else {
-                    coin24hrPercentSpan.style.color = 'red';
-                }
+function saveWatchlistIds() {
+    localStorage.setItem(WATCHLIST_STORAGE_KEY, JSON.stringify(watchlistIds));
+    localStorage.removeItem(LEGACY_WATCHLIST_KEY);
+}
 
-                const actual7dData = document.createElement('td');
-                actual7dData.classList.add('acutal-7d-%');
-                const coin7dPercentDataDiv = document.createElement('div');
-                coin7dPercentDataDiv.classList.add('coin-7d-percent-data-div');
-                const coinPercent7dSpan = document.createElement('span');
-                coinPercent7dSpan.classList.add('coin-percent-7d');
-                coinPercent7dSpan.textContent = data[
-                    currentIndex
-                ].high_24h.toLocaleString('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                });
+function isSavedCoin(coinId) {
+    return watchlistIds.includes(coinId);
+}
 
-                const actual24hrVolumeData = document.createElement('td');
-                actual24hrVolumeData.classList.add('actual-24hr-volume');
-                const coin24hrVolumeDataDiv = document.createElement('div');
-                coin24hrVolumeDataDiv.classList.add(
-                    'coin-24hr-volume-data-div'
-                );
-                const coin24hrVolumeSpan = document.createElement('span');
-                coin24hrVolumeSpan.classList.add('coin-24hr-volume');
-                coin24hrVolumeSpan.textContent = data[
-                    currentIndex
-                ].ath.toLocaleString('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                });
+function toggleSavedCoin(coinId) {
+    if (isSavedCoin(coinId)) {
+        watchlistIds = watchlistIds.filter(function (savedCoinId) {
+            return savedCoinId !== coinId;
+        });
+    } else {
+        watchlistIds = watchlistIds.concat(coinId);
+    }
 
-                const actualMktCapData = document.createElement('td');
-                actualMktCapData.classList.add('actual-mkt-cap');
-                const coinMktCapDataDiv = document.createElement('div');
-                coinMktCapDataDiv.classList.add('coin-mkt-cap-data-div');
-                const coinMktCapSpan = document.createElement('span');
-                coinMktCapSpan.classList.add('coin-mkt-cap');
-                coinMktCapSpan.textContent = `${data[
-                    currentIndex
-                ].ath_change_percentage.toFixed(2)}\%`;
-                if (data[currentIndex].ath_change_percentage.toFixed(2) > 0) {
-                    coinMktCapSpan.style.color = 'green';
-                } else {
-                    coinMktCapSpan.style.color = 'red';
-                }
+    saveWatchlistIds();
+    return isSavedCoin(coinId);
+}
 
-                const sevenDayChartData = document.createElement('td');
-                sevenDayChartData.classList.add('7-day-chart-td');
-                const sevenDaychartImg = document.createElement('div');
-                sevenDaychartImg.classList.add('sevenDayChart');
-                const mktCapSpan = document.createElement('span');
-                mktCapSpan.classList.add('mkt-cap-span');
-                mktCapSpan.textContent = data[
-                    currentIndex
-                ].market_cap.toLocaleString('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                });
+function formatCurrency(value, options) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+        return 'N/A';
+    }
 
-                // Append
-                const tbody = document.querySelector('tbody');
+    return value.toLocaleString(
+        'en-US',
+        Object.assign(
+            {
+                style: 'currency',
+                currency: 'USD',
+            },
+            options || {}
+        )
+    );
+}
 
-                tbody.appendChild(row);
-                row.appendChild(starData);
-                row.appendChild(coinNumberData);
+function formatPercent(value) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+        return 'N/A';
+    }
 
-                coinInfo.appendChild(coinLogoData);
-                coinInfo.appendChild(coinNameDataSpan);
-                coinInfo.appendChild(coinAbrvData);
-                actualCoinData.appendChild(coinInfo);
-                row.appendChild(actualCoinData);
+    return `${value.toFixed(2)}%`;
+}
 
-                coinPriceData.appendChild(coinPriceSpan);
-                actualPriceData.appendChild(coinPriceData);
-                row.appendChild(actualPriceData);
+function setTrendColor(element, value) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+        element.style.color = '';
+        return;
+    }
 
-                coin24hrPercentData.appendChild(coin24hrPercentSpan);
-                actual24hrPercentData.appendChild(coin24hrPercentData);
-                row.appendChild(actual24hrPercentData);
+    if (value > 0) {
+        element.style.color = 'green';
+    } else if (value < 0) {
+        element.style.color = 'red';
+    } else {
+        element.style.color = 'black';
+    }
+}
 
-                coin7dPercentDataDiv.appendChild(coinPercent7dSpan);
-                actual7dData.appendChild(coin7dPercentDataDiv);
-                row.appendChild(actual7dData);
+function createCell(className, child) {
+    const cell = document.createElement('td');
+    cell.className = className;
+    cell.appendChild(child);
+    return cell;
+}
 
-                coin24hrVolumeDataDiv.appendChild(coin24hrVolumeSpan);
-                actual24hrVolumeData.appendChild(coin24hrVolumeDataDiv);
-                row.appendChild(actual24hrVolumeData);
+function createTextBlock(className, text) {
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    const span = document.createElement('span');
+    span.textContent = text;
+    wrapper.appendChild(span);
+    return {
+        wrapper: wrapper,
+        textElement: span,
+    };
+}
 
-                coinMktCapDataDiv.appendChild(coinMktCapSpan);
-                actualMktCapData.appendChild(coinMktCapDataDiv);
-                row.appendChild(actualMktCapData);
+function updateEmptyState(visibleCoinsCount) {
+    if (pageMode === 'watchlist') {
+        setStatus(
+            visibleCoinsCount === 0
+                ? 'Your watch list is empty. Add coins from the Crypto Currencies page to see them here.'
+                : ''
+        );
+        return;
+    }
 
-                sevenDaychartImg.appendChild(mktCapSpan);
-                sevenDayChartData.appendChild(sevenDaychartImg);
-                row.appendChild(sevenDayChartData);
+    if (visibleCoinsCount === 0) {
+        setStatus('No coins are available right now. Please try again shortly.');
+    } else {
+        clearStatus();
+    }
+}
 
-                // Styling
+function renderTableRows(coins) {
+    tableBody.innerHTML = '';
 
-                const symbols = document.querySelectorAll('.coin-abrv');
-                console.log(symbols);
-                console.log(symbols[currentIndex]);
-                // symbols[currentIndex].style.paddingLeft = '5px';
+    coins.forEach(function (coin, index) {
+        const row = document.createElement('tr');
+        row.dataset.coinId = coin.id;
 
-                const starButton = document.getElementById(
-                    `star-button-${currentIndex}`
-                );
-                starButton.addEventListener('click', function (event) {
-                    const row = event.target.parentNode.parentNode;
-                    console.log(event.target);
-                    console.log(row);
+        const starCell = document.createElement('td');
+        starCell.className = 'star';
+        const starButton = document.createElement('button');
+        starButton.type = 'button';
+        starButton.className = isSavedCoin(coin.id) ? 'filled' : 'unfilled';
+        starButton.setAttribute(
+            'aria-label',
+            isSavedCoin(coin.id)
+                ? `Remove ${coin.name} from watch list`
+                : `Add ${coin.name} to watch list`
+        );
+        starCell.appendChild(starButton);
 
-                    const arrIndex =
-                        row.getElementsByClassName('coin-number')[0]
-                            .textContent - 1;
-                    // if its not apart of the watch list
-                    if (!watchListArr.includes(arrIndex)) {
-                        starButton.classList.remove('unfilled');
-                        starButton.classList.add('filled');
-                        watchListArr.push(arrIndex);
-                        // console.log(watchListArr);
-                    } else if (watchListArr.includes(arrIndex)) {
-                        starButton.classList.remove('filled');
-                        starButton.classList.add('unfilled');
-                        console.log(watchListArr);
-                        let index = watchListArr.indexOf(arrIndex);
-                        watchListArr.splice(index, 1);
-                        console.log(watchListArr);
-                        row.remove();
-                        // code snippet here
-                    }
+        const rankCell = document.createElement('td');
+        rankCell.className = 'coin-number';
+        rankCell.textContent = coin.market_cap_rank || index + 1;
 
-                    localStorage.setItem(
-                        'watchListArr',
-                        JSON.stringify(watchListArr)
-                    );
-                });
+        const coinCell = document.createElement('td');
+        coinCell.className = 'actual-coin';
+        const coinInfo = document.createElement('div');
+        coinInfo.className = 'coin-info-div';
+        const coinLogo = document.createElement('img');
+        coinLogo.className = 'coin-logo';
+        coinLogo.src = coin.image;
+        coinLogo.alt = `${coin.name} logo`;
+        const coinName = document.createElement('span');
+        coinName.className = 'coin-name';
+        coinName.textContent = coin.name;
+        const coinSymbol = document.createElement('span');
+        coinSymbol.className = 'coin-abrv';
+        coinSymbol.textContent = coin.symbol;
+        coinInfo.appendChild(coinLogo);
+        coinInfo.appendChild(coinName);
+        coinInfo.appendChild(coinSymbol);
+        coinCell.appendChild(coinInfo);
+
+        const priceText = createTextBlock(
+            'coin-price-data-div',
+            formatCurrency(coin.current_price)
+        );
+        const priceCell = createCell('actual-price-td', priceText.wrapper);
+        priceText.textElement.className = 'coin-price';
+
+        const changeText = createTextBlock(
+            'coin-24hr-percent-data-div',
+            formatPercent(coin.price_change_percentage_24h)
+        );
+        const changeCell = createCell('actual-24hr-%', changeText.wrapper);
+        changeText.textElement.className = 'coin-percent-24hr';
+        setTrendColor(changeText.textElement, coin.price_change_percentage_24h);
+
+        const highText = createTextBlock(
+            'coin-7d-percent-data-div',
+            formatCurrency(coin.high_24h)
+        );
+        const highCell = createCell('acutal-7d-%', highText.wrapper);
+        highText.textElement.className = 'coin-percent-7d';
+
+        const athText = createTextBlock(
+            'coin-24hr-volume-data-div',
+            formatCurrency(coin.ath)
+        );
+        const athCell = createCell('actual-24hr-volume', athText.wrapper);
+        athText.textElement.className = 'coin-24hr-volume';
+
+        const athChangeText = createTextBlock(
+            'coin-mkt-cap-data-div',
+            formatPercent(coin.ath_change_percentage)
+        );
+        const athChangeCell = createCell('actual-mkt-cap', athChangeText.wrapper);
+        athChangeText.textElement.className = 'coin-mkt-cap';
+        setTrendColor(athChangeText.textElement, coin.ath_change_percentage);
+
+        const marketCapText = createTextBlock(
+            'sevenDayChart',
+            formatCurrency(coin.market_cap, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            })
+        );
+        const marketCapCell = createCell('7-day-chart-td', marketCapText.wrapper);
+        marketCapText.textElement.className = 'mkt-cap-span';
+
+        row.appendChild(starCell);
+        row.appendChild(rankCell);
+        row.appendChild(coinCell);
+        row.appendChild(priceCell);
+        row.appendChild(changeCell);
+        row.appendChild(highCell);
+        row.appendChild(athCell);
+        row.appendChild(athChangeCell);
+        row.appendChild(marketCapCell);
+
+        starButton.addEventListener('click', function () {
+            const coinIsSaved = toggleSavedCoin(coin.id);
+            starButton.classList.toggle('filled', coinIsSaved);
+            starButton.classList.toggle('unfilled', !coinIsSaved);
+            starButton.setAttribute(
+                'aria-label',
+                coinIsSaved
+                    ? `Remove ${coin.name} from watch list`
+                    : `Add ${coin.name} to watch list`
+            );
+
+            if (pageMode === 'watchlist' && !coinIsSaved) {
+                row.remove();
+                updateEmptyState(tableBody.querySelectorAll('tr').length);
             }
         });
 
-        // Bugged needs fix
-        // Generates content when click on Cryptocurrencies nav item
-        const navCc = document.getElementById('nav-cc-id');
-        navCc.addEventListener('click', function (event) {
-            event.preventDefault();
-            const tbody2 = document.querySelector('tbody');
-            tbody2.innerHTML = ' ';
-            createTableRows();
-            location.reload();
-        });
+        tableBody.appendChild(row);
+    });
+
+    updateEmptyState(coins.length);
+}
+
+function filterCoinsForCurrentPage(coins) {
+    if (pageMode !== 'watchlist') {
+        return coins;
+    }
+
+    return coins.filter(function (coin) {
+        return isSavedCoin(coin.id);
+    });
+}
+
+function updatePageHeading() {
+    if (!pageTitle) {
+        return;
+    }
+
+    if (pageMode === 'watchlist') {
+        pageTitle.textContent = 'Your Watch List';
+    } else {
+        pageTitle.textContent = 'Crypto Currencies by Market Cap';
+    }
+}
+
+function showFetchError() {
+    tableBody.innerHTML = '';
+    setStatus(
+        'Unable to load the latest market data right now. Please refresh and try again.'
+    );
+}
+
+updatePageHeading();
+setStatus('Loading market data...');
+
+fetch(MARKET_DATA_URL)
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Failed to fetch market data');
+        }
+
+        return response.json();
+    })
+    .then(function (coins) {
+        renderTableRows(filterCoinsForCurrentPage(coins));
+    })
+    .catch(function (error) {
+        console.error(error);
+        showFetchError();
     });

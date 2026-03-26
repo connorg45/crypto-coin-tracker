@@ -46,6 +46,13 @@ nav.navbar {
     margin: 0 auto;
 }
 
+.table-status {
+    min-height: 24px;
+    margin-bottom: 1rem;
+    color: #4c305f;
+    font-weight: 600;
+}
+
 /* Table */
 table {
     width: 100%;
@@ -187,4 +194,9 @@ footer li {
 
 .coin-abrv {
     padding-left: 5px;
+}
+
+.coin-info-div {
+    align-items: center;
+    display: flex;
 }
