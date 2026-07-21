@@ -1,1 +1,21 @@
 .DS_Store
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+*.tsbuildinfo
+.artifacts/
+
+# Local Cloudflare credentials and state
+.dev.vars
+.wrangler/
+
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log

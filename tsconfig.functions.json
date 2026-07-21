@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ES2023", "WebWorker"],
+    "types": ["@cloudflare/workers-types", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["shared/*"]
+    },
+    "noEmit": true
+  },
+  "include": ["functions", "shared", "tests/functions"]
+}

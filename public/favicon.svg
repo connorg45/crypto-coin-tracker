@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lizard Coin Tracker">
+  <rect width="64" height="64" rx="14" fill="#11251b"/>
+  <path d="M19 14v30c0 4 2 6 6 6h22v-8H29V14z" fill="#a7f36b"/>
+  <circle cx="45" cy="18" r="5" fill="#f3b44f"/>
+</svg>
