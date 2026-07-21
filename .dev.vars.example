@@ -1,0 +1,2 @@
+# Copy to .dev.vars and replace the value locally. Never commit the real key.
+COINGECKO_DEMO_API_KEY=replace-with-your-demo-key

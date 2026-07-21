@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "revision": "96466f32612274994cdd1e3b9a89ec571b798f40",
+  "tag": "legacy-baseline-2026-03-26",
+  "generatedAt": "2026-07-21T06:08:46.064Z",
+  "archiveMethod": "git archive --format=tar",
+  "fileCount": 35,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 10,
+      "sha256": "cf237c7aff44efbe6e502e645c3e06da03a69d7bdeb43392108ef3348143417e"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1070,
+      "sha256": "ab1ccdf5660050bb55ac11b51b08fa0b55a36d8309533d57e19e199ec7df8281"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2735,
+      "sha256": "702be89522bcd7f0035eccbd75aac93addbe6e66f662d100972da2787b421b55"
+    },
+    {
+      "path": "assets/css/crypto.css",
+      "bytes": 6032,
+      "sha256": "62f864baade7d484b5623ace2f86161c128d339d71f3e51acdc674f13bcd935c"
+    },
+    {
+      "path": "assets/css/learnmore.css",
+      "bytes": 1090,
+      "sha256": "dce006d078b424714642488b3edddce6ef70bd4e8c0ef13a282956cf8b4945e7"
+    },
+    {
+      "path": "assets/css/style.css",
+      "bytes": 9548,
+      "sha256": "6c4a84a1db559bda34d9fe8d275863587ea18cb9c5addbf296776f2e9f557ba6"
+    },
+    {
+      "path": "assets/images/112017-Blockchain-4-V2.png",
+      "bytes": 36051,
+      "sha256": "97e5edc9d8f328fb4d3ce8db73e3cb82f69702df014f7bd2aebeaaa89c634c35"
+    },
+    {
+      "path": "assets/images/200205-bitcoin-sixteen_nine.jpg",
+      "bytes": 114336,
+      "sha256": "b664f2dad46ac233d65024993ab6d5f5adaadf4a347ea9c9858b474e53b956f7"
+    },
+    {
+      "path": "assets/images/Cryptocurrency-preview.png",
+      "bytes": 439507,
+      "sha256": "8566bb08c7c6fa1e1c78f2f0b70ed105de4822419f53ba1d0f76ebbb0508360f"
+    },
+    {
+      "path": "assets/images/Final logo.png",
+      "bytes": 49978,
+      "sha256": "1060694398ccec44b657955634e503ba98e5d845182dceeb2d7666586b4874e7"
+    },
+    {
+      "path": "assets/images/Final_logo.png",
+      "bytes": 50004,
+      "sha256": "602535d967a492314215ebab69e68fa4e011768969e9306cc4f5c1146be2231d"
+    },
+    {
+      "path": "assets/images/Homepage-preview.png",
+      "bytes": 609531,
+      "sha256": "3ca5491e67bf32351142e6e986e6ff77c3ab9b7f11723a9b503e366ef1036e51"
+    },
+    {
+      "path": "assets/images/Learnmore-preview.png",
+      "bytes": 981232,
+      "sha256": "788972cd6080841a561bdd54fa34b6d3d1b84d1005d5e0758bc2dd47c47741b9"
+    },
+    {
+      "path": "assets/images/Watchlist-preview.png",
+      "bytes": 155279,
+      "sha256": "28a289a10e3a81928c7a97be95585810a150dfb0eca46c5c2bef8212a2e8d2c2"
+    },
+    {
+      "path": "assets/images/cryptograph.jpg",
+      "bytes": 176632,
+      "sha256": "ca6571bbd357a86e484d0a1b8716e9014aeadd86a6b873f1dbcef7f29f538c8b"
+    },
+    {
+      "path": "assets/images/earnings.webp",
+      "bytes": 20966,
+      "sha256": "4a2fadda5ab7469b4ac8940e75d74dee0d123a2af082e1ff04055b05e759ac56"
+    },
+    {
+      "path": "assets/images/istockphoto-1034363382-612x612.jpg",
+      "bytes": 86944,
+      "sha256": "08ab766279860c7b3f3a238ebf486f1030cb8e174aa285e1447ef6a81a74c70e"
+    },
+    {
+      "path": "assets/images/istockphoto-1166623539-170667a.jpg",
+      "bytes": 65812,
+      "sha256": "8e3f1c9649719cdfb6b6c3d76f829e3fcce68f2e7ebf8cf1d8fc3b47a9888e94"
+    },
+    {
+      "path": "assets/images/lizard.png",
+      "bytes": 53952,
+      "sha256": "fc4bb15a9877ddea16ae4dd6808cb34466c20fccc9b39df6509bc76707d07d4c"
+    },
+    {
+      "path": "assets/images/lizardlogo.jpg",
+      "bytes": 105507,
+      "sha256": "779a74fc6fdb690bba06ac0773a917dc4abb8cfca3f2dd26d779f06a694a2eee"
+    },
+    {
+      "path": "assets/images/lizardlogofinal.png",
+      "bytes": 122121,
+      "sha256": "cfa9d9d0b4d00d4922b1783d8b784ebaaf914c79cbd69eedef6d00e0dab76a74"
+    },
+    {
+      "path": "assets/images/logo.png",
+      "bytes": 114884,
+      "sha256": "5ffd8fc97b8030d0c2326790146b1ab9e336f9c1b4711d0f6b68c0696f8acede"
+    },
+    {
+      "path": "assets/images/star-fill.svg",
+      "bytes": 399,
+      "sha256": "d14fae3fd37ee59d049d37423e610e58cf517e6a544b5dc52f7a63fa28a57e7e"
+    },
+    {
+      "path": "assets/images/star.svg",
+      "bytes": 636,
+      "sha256": "8e2a0a1e72bfabe8a6a2a8a42682dd6fb88e15482faeebd7de119de30547cf65"
+    },
+    {
+      "path": "assets/images/wallet.jpg",
+      "bytes": 811512,
+      "sha256": "fe782dbe086f5eb9af1b789e0ce6f860b5720600da79ed89a526fd22c16c0754"
+    },
+    {
+      "path": "assets/js/coin-detail.js",
+      "bytes": 12131,
+      "sha256": "3d727711c65b626f395a59bf7727e5d86d2f3a10210c010e12e030ef664456be"
+    },
+    {
+      "path": "assets/js/coingecko-cache.js",
+      "bytes": 2433,
+      "sha256": "5252ceba09c3141da3f785bea4bca3a29b687465169a4e880998507edd4de7c8"
+    },
+    {
+      "path": "assets/js/crypto.js",
+      "bytes": 19660,
+      "sha256": "f77d88e9194079b62de047391b6a99680628701467f6cff0538980e37d7cb654"
+    },
+    {
+      "path": "assets/js/script.js",
+      "bytes": 9019,
+      "sha256": "47de32cc8793b7a9cc47fddf649bf87452a1ed5160f5a2cf84e22e530e3c60a5"
+    },
+    {
+      "path": "coin.html",
+      "bytes": 9756,
+      "sha256": "9ba048ac4674936dd32de27dbbdfd8afd5c10f2dab72726168f5c5c0b9ede174"
+    },
+    {
+      "path": "crypto.html",
+      "bytes": 8705,
+      "sha256": "e356a8ab872f4b3cccba385bb0ad3a25750625cc2bae5faf36eba91f34f657f9"
+    },
+    {
+      "path": "index.html",
+      "bytes": 15004,
+      "sha256": "ec705ee9ac38f21007b36aa4faa57f9cc3821a2b15e4b2eb9afbfc6c819a9e98"
+    },
+    {
+      "path": "learnmore.html",
+      "bytes": 12682,
+      "sha256": "4d59fb17c261faf27e584886733dbb60d2fe89762eae8985d15ec6ec34cd56ac"
+    },
+    {
+      "path": "portfolio.html",
+      "bytes": 9630,
+      "sha256": "20280c0848bdf2d26e288d4aeebd0c125e2e066d719670b2d61ba65f94e0e7d8"
+    },
+    {
+      "path": "watchlist.html",
+      "bytes": 8722,
+      "sha256": "a01eac124bd2e4bc4291b8f72fdc7fd8f46c6de623a90e64950f292b9f2a01e0"
+    }
+  ],
+  "webPaths": [
+    {
+      "path": "/assets/css/crypto.css",
+      "source": "assets/css/crypto.css",
+      "bytes": 6032,
+      "sha256": "62f864baade7d484b5623ace2f86161c128d339d71f3e51acdc674f13bcd935c"
+    },
+    {
+      "path": "/assets/css/learnmore.css",
+      "source": "assets/css/learnmore.css",
+      "bytes": 1090,
+      "sha256": "dce006d078b424714642488b3edddce6ef70bd4e8c0ef13a282956cf8b4945e7"
+    },
+    {
+      "path": "/assets/css/style.css",
+      "source": "assets/css/style.css",
+      "bytes": 9548,
+      "sha256": "6c4a84a1db559bda34d9fe8d275863587ea18cb9c5addbf296776f2e9f557ba6"
+    },
+    {
+      "path": "/assets/images/112017-Blockchain-4-V2.png",
+      "source": "assets/images/112017-Blockchain-4-V2.png",
+      "bytes": 36051,
+      "sha256": "97e5edc9d8f328fb4d3ce8db73e3cb82f69702df014f7bd2aebeaaa89c634c35"
+    },
+    {
+      "path": "/assets/images/200205-bitcoin-sixteen_nine.jpg",
+      "source": "assets/images/200205-bitcoin-sixteen_nine.jpg",
+      "bytes": 114336,
+      "sha256": "b664f2dad46ac233d65024993ab6d5f5adaadf4a347ea9c9858b474e53b956f7"
+    },
+    {
+      "path": "/assets/images/Cryptocurrency-preview.png",
+      "source": "assets/images/Cryptocurrency-preview.png",
+      "bytes": 439507,
+      "sha256": "8566bb08c7c6fa1e1c78f2f0b70ed105de4822419f53ba1d0f76ebbb0508360f"
+    },
+    {
+      "path": "/assets/images/Final logo.png",
+      "source": "assets/images/Final logo.png",
+      "bytes": 49978,
+      "sha256": "1060694398ccec44b657955634e503ba98e5d845182dceeb2d7666586b4874e7"
+    },
+    {
+      "path": "/assets/images/Final_logo.png",
+      "source": "assets/images/Final_logo.png",
+      "bytes": 50004,
+      "sha256": "602535d967a492314215ebab69e68fa4e011768969e9306cc4f5c1146be2231d"
+    },
+    {
+      "path": "/assets/images/Homepage-preview.png",
+      "source": "assets/images/Homepage-preview.png",
+      "bytes": 609531,
+      "sha256": "3ca5491e67bf32351142e6e986e6ff77c3ab9b7f11723a9b503e366ef1036e51"
+    },
+    {
+      "path": "/assets/images/Learnmore-preview.png",
+      "source": "assets/images/Learnmore-preview.png",
+      "bytes": 981232,
+      "sha256": "788972cd6080841a561bdd54fa34b6d3d1b84d1005d5e0758bc2dd47c47741b9"
+    },
+    {
+      "path": "/assets/images/Watchlist-preview.png",
+      "source": "assets/images/Watchlist-preview.png",
+      "bytes": 155279,
+      "sha256": "28a289a10e3a81928c7a97be95585810a150dfb0eca46c5c2bef8212a2e8d2c2"
+    },
+    {
+      "path": "/assets/images/cryptograph.jpg",
+      "source": "assets/images/cryptograph.jpg",
+      "bytes": 176632,
+      "sha256": "ca6571bbd357a86e484d0a1b8716e9014aeadd86a6b873f1dbcef7f29f538c8b"
+    },
+    {
+      "path": "/assets/images/earnings.webp",
+      "source": "assets/images/earnings.webp",
+      "bytes": 20966,
+      "sha256": "4a2fadda5ab7469b4ac8940e75d74dee0d123a2af082e1ff04055b05e759ac56"
+    },
+    {
+      "path": "/assets/images/istockphoto-1034363382-612x612.jpg",
+      "source": "assets/images/istockphoto-1034363382-612x612.jpg",
+      "bytes": 86944,
+      "sha256": "08ab766279860c7b3f3a238ebf486f1030cb8e174aa285e1447ef6a81a74c70e"
+    },
+    {
+      "path": "/assets/images/istockphoto-1166623539-170667a.jpg",
+      "source": "assets/images/istockphoto-1166623539-170667a.jpg",
+      "bytes": 65812,
+      "sha256": "8e3f1c9649719cdfb6b6c3d76f829e3fcce68f2e7ebf8cf1d8fc3b47a9888e94"
+    },
+    {
+      "path": "/assets/images/lizard.png",
+      "source": "assets/images/lizard.png",
+      "bytes": 53952,
+      "sha256": "fc4bb15a9877ddea16ae4dd6808cb34466c20fccc9b39df6509bc76707d07d4c"
+    },
+    {
+      "path": "/assets/images/lizardlogo.jpg",
+      "source": "assets/images/lizardlogo.jpg",
+      "bytes": 105507,
+      "sha256": "779a74fc6fdb690bba06ac0773a917dc4abb8cfca3f2dd26d779f06a694a2eee"
+    },
+    {
+      "path": "/assets/images/lizardlogofinal.png",
+      "source": "assets/images/lizardlogofinal.png",
+      "bytes": 122121,
+      "sha256": "cfa9d9d0b4d00d4922b1783d8b784ebaaf914c79cbd69eedef6d00e0dab76a74"
+    },
+    {
+      "path": "/assets/images/logo.png",
+      "source": "assets/images/logo.png",
+      "bytes": 114884,
+      "sha256": "5ffd8fc97b8030d0c2326790146b1ab9e336f9c1b4711d0f6b68c0696f8acede"
+    },
+    {
+      "path": "/assets/images/star-fill.svg",
+      "source": "assets/images/star-fill.svg",
+      "bytes": 399,
+      "sha256": "d14fae3fd37ee59d049d37423e610e58cf517e6a544b5dc52f7a63fa28a57e7e"
+    },
+    {
+      "path": "/assets/images/star.svg",
+      "source": "assets/images/star.svg",
+      "bytes": 636,
+      "sha256": "8e2a0a1e72bfabe8a6a2a8a42682dd6fb88e15482faeebd7de119de30547cf65"
+    },
+    {
+      "path": "/assets/images/wallet.jpg",
+      "source": "assets/images/wallet.jpg",
+      "bytes": 811512,
+      "sha256": "fe782dbe086f5eb9af1b789e0ce6f860b5720600da79ed89a526fd22c16c0754"
+    },
+    {
+      "path": "/assets/js/coin-detail.js",
+      "source": "assets/js/coin-detail.js",
+      "bytes": 12131,
+      "sha256": "3d727711c65b626f395a59bf7727e5d86d2f3a10210c010e12e030ef664456be"
+    },
+    {
+      "path": "/assets/js/coingecko-cache.js",
+      "source": "assets/js/coingecko-cache.js",
+      "bytes": 2433,
+      "sha256": "5252ceba09c3141da3f785bea4bca3a29b687465169a4e880998507edd4de7c8"
+    },
+    {
+      "path": "/assets/js/crypto.js",
+      "source": "assets/js/crypto.js",
+      "bytes": 19660,
+      "sha256": "f77d88e9194079b62de047391b6a99680628701467f6cff0538980e37d7cb654"
+    },
+    {
+      "path": "/assets/js/script.js",
+      "source": "assets/js/script.js",
+      "bytes": 9019,
+      "sha256": "47de32cc8793b7a9cc47fddf649bf87452a1ed5160f5a2cf84e22e530e3c60a5"
+    },
+    {
+      "path": "/coin.html",
+      "source": "coin.html",
+      "bytes": 9756,
+      "sha256": "9ba048ac4674936dd32de27dbbdfd8afd5c10f2dab72726168f5c5c0b9ede174"
+    },
+    {
+      "path": "/crypto.html",
+      "source": "crypto.html",
+      "bytes": 8705,
+      "sha256": "e356a8ab872f4b3cccba385bb0ad3a25750625cc2bae5faf36eba91f34f657f9"
+    },
+    {
+      "path": "/",
+      "source": "index.html",
+      "bytes": 15004,
+      "sha256": "ec705ee9ac38f21007b36aa4faa57f9cc3821a2b15e4b2eb9afbfc6c819a9e98"
+    },
+    {
+      "path": "/learnmore.html",
+      "source": "learnmore.html",
+      "bytes": 12682,
+      "sha256": "4d59fb17c261faf27e584886733dbb60d2fe89762eae8985d15ec6ec34cd56ac"
+    },
+    {
+      "path": "/portfolio.html",
+      "source": "portfolio.html",
+      "bytes": 9630,
+      "sha256": "20280c0848bdf2d26e288d4aeebd0c125e2e066d719670b2d61ba65f94e0e7d8"
+    },
+    {
+      "path": "/watchlist.html",
+      "source": "watchlist.html",
+      "bytes": 8722,
+      "sha256": "a01eac124bd2e4bc4291b8f72fdc7fd8f46c6de623a90e64950f292b9f2a01e0"
+    }
+  ]
+}

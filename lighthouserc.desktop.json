@@ -1,0 +1,32 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "PORT=4174 node scripts/preview-with-fixtures.mjs",
+      "startServerReadyPattern": "Fixture preview listening",
+      "url": ["http://127.0.0.1:4174/", "http://127.0.0.1:4174/coin/bitcoin"],
+      "numberOfRuns": 5,
+      "settings": { "preset": "desktop" }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": [
+          "error",
+          { "minScore": 0.95, "aggregationMethod": "median-run" }
+        ],
+        "categories:accessibility": [
+          "error",
+          { "minScore": 1, "aggregationMethod": "median-run" }
+        ],
+        "largest-contentful-paint": [
+          "error",
+          { "maxNumericValue": 2500, "aggregationMethod": "median-run" }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          { "maxNumericValue": 0.1, "aggregationMethod": "median-run" }
+        ]
+      }
+    },
+    "upload": { "target": "filesystem", "outputDir": ".lighthouseci/desktop" }
+  }
+}

@@ -1,0 +1,37 @@
+name: Nightly reliability
+
+on:
+  schedule:
+    - cron: "41 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cross-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24.1.0
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps
+      - run: npm run test:e2e:all
+
+  production-contract:
+    runs-on: ubuntu-latest
+    env:
+      LCT_PRODUCTION_URL: ${{ vars.LCT_PRODUCTION_URL }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24.1.0
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Low-volume live contract smoke
+        if: env.LCT_PRODUCTION_URL != ''
+        run: npm run smoke:production -- "$LCT_PRODUCTION_URL"
