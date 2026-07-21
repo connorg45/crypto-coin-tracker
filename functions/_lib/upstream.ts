@@ -95,12 +95,12 @@ function allowedImage(value: string | null): string | null {
 function providerText(html: string): string {
   const withoutTags = html.replace(/<[^>]*>/g, " ");
   return withoutTags
-    .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
     .replace(/&#39;|&apos;/g, "'")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 8_000);

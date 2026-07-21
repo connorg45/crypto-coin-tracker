@@ -69,7 +69,7 @@ describe("provider validation and normalization", () => {
         ath: { usd: 20 },
       },
       description: {
-        en: "<p>Peer &amp; peer</p><script>ignored text</script>",
+        en: "<p>Peer &amp; peer</p><script>ignored text</script> &amp;lt;encoded&amp;gt;",
       },
     });
     const result = await loadCoin(
@@ -77,7 +77,9 @@ describe("provider validation and normalization", () => {
       "bitcoin",
       { fetcher },
     );
-    expect(result.data.description).toBe("Peer & peer ignored text");
+    expect(result.data.description).toBe(
+      "Peer & peer ignored text &lt;encoded&gt;",
+    );
     const headers = new Headers(fetcher.mock.calls[0]![1]?.headers);
     expect(headers.get("x-cg-demo-api-key")).toBe("test-secret");
   });
