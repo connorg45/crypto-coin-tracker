@@ -275,6 +275,7 @@ async function captureDemo(browser) {
   );
   if (conversion.status !== 0)
     throw new Error("ffmpeg could not create the GIF.");
+  await rm(stableVideoPath, { force: true });
   await rm(videoDirectory, { recursive: true, force: true });
 }
 

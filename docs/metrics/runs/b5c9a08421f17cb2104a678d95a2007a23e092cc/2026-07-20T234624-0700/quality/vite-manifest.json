@@ -1,0 +1,53 @@
+{
+  "_useQuery-D2i6CObq.js": {
+    "file": "assets/useQuery-D2i6CObq.js",
+    "name": "useQuery"
+  },
+  "index.html": {
+    "file": "assets/index-DyItQd5E.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_useQuery-D2i6CObq.js"
+    ],
+    "dynamicImports": [
+      "src/pages/CoinDetailPage.tsx",
+      "src/pages/PortfolioPage.tsx",
+      "src/pages/WatchlistPage.tsx"
+    ],
+    "css": [
+      "assets/index-dNYe_Ypf.css"
+    ]
+  },
+  "src/pages/CoinDetailPage.tsx": {
+    "file": "assets/CoinDetailPage-C2xpZAUl.js",
+    "name": "CoinDetailPage",
+    "src": "src/pages/CoinDetailPage.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_useQuery-D2i6CObq.js",
+      "index.html"
+    ]
+  },
+  "src/pages/PortfolioPage.tsx": {
+    "file": "assets/PortfolioPage-C5JXRwTp.js",
+    "name": "PortfolioPage",
+    "src": "src/pages/PortfolioPage.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_useQuery-D2i6CObq.js",
+      "index.html"
+    ]
+  },
+  "src/pages/WatchlistPage.tsx": {
+    "file": "assets/WatchlistPage-4PTf3KK5.js",
+    "name": "WatchlistPage",
+    "src": "src/pages/WatchlistPage.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_useQuery-D2i6CObq.js",
+      "index.html"
+    ]
+  }
+}

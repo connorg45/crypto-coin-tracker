@@ -36,10 +36,13 @@ test("market → detail → range → watchlist → holding → portfolio persis
 });
 
 test("keyboard-only navigation reaches range and watch controls", async ({
+  browserName,
   page,
 }) => {
   await page.goto("/coin/bitcoin");
-  await page.keyboard.press("Tab");
+  // Safari/WebKit uses Option+Tab for link traversal when macOS full keyboard
+  // access is not enabled. Chromium and Firefox use an unmodified Tab.
+  await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
   await expect(
     page.getByRole("link", { name: "Skip to main content" }),
   ).toBeFocused();

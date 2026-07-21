@@ -1,0 +1,42 @@
+{
+  "inventory": [
+    {
+      "file": "CoinDetailPage-C2xpZAUl.js",
+      "bytes": 5402,
+      "gzipBytes": 1946
+    },
+    {
+      "file": "PortfolioPage-C5JXRwTp.js",
+      "bytes": 4876,
+      "gzipBytes": 1586
+    },
+    {
+      "file": "WatchlistPage-4PTf3KK5.js",
+      "bytes": 1428,
+      "gzipBytes": 705
+    },
+    {
+      "file": "index-DyItQd5E.js",
+      "bytes": 204343,
+      "gzipBytes": 63301
+    },
+    {
+      "file": "index-dNYe_Ypf.css",
+      "bytes": 14147,
+      "gzipBytes": 4099
+    },
+    {
+      "file": "useQuery-D2i6CObq.js",
+      "bytes": 150104,
+      "gzipBytes": 45397
+    }
+  ],
+  "totals": {
+    "javascriptGzipBytes": 112935,
+    "staticGzipBytes": 117034
+  },
+  "limits": {
+    "javascriptGzipBytes": 153600,
+    "staticGzipBytes": 512000
+  }
+}

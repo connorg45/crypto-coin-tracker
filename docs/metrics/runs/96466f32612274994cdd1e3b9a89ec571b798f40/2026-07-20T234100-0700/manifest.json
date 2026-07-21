@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "revision": "96466f32612274994cdd1e3b9a89ec571b798f40",
+  "kind": "controlled-local-baseline",
+  "recordedAt": "2026-07-20T23:41:00-07:00",
+  "page": "/crypto.html",
+  "deploymentUrl": null,
+  "runner": {
+    "os": "macOS Darwin 25.5.0 arm64",
+    "node": "24.1.0",
+    "lighthouse": "12.6.1",
+    "chrome": "150.0.0.0",
+    "region": "local; America/Los_Angeles"
+  },
+  "method": {
+    "archive": "npm run baseline:prepare (git archive 96466f32612274994cdd1e3b9a89ec571b798f40)",
+    "fixtureInstrumentation": "npm run baseline:prepare-lab; replace only the legacy CoinGecko URL literal with http://127.0.0.1:4185/api/markets and add a deterministic 50-record provider-shaped fixture",
+    "server": "python3 -m http.server 4185 --bind 127.0.0.1 from .artifacts/legacy-baseline-lab",
+    "mobile": "five Lighthouse runs at 390x844 with the standard simulated-mobile throttling profile",
+    "desktop": "five Lighthouse runs with the Lighthouse desktop preset"
+  },
+  "limitations": [
+    "This is a local controlled lab run, not field data or user traffic.",
+    "The measured copy differs from the archived revision only by the documented provider-URL substitution and added fixture file; this instrumentation is not a deployable artifact.",
+    "The baseline page was the inherited market page because the old root was a marketing page.",
+    "Third-party API responses were not used as correctness or impact measurements."
+  ]
+}

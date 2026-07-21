@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-21T06:52:47.643Z",
+  "warning": "Controlled local lab results with deterministic settings; not field data or user traffic.",
+  "baseline": {
+    "revision": "96466f32612274994cdd1e3b9a89ec571b798f40",
+    "kind": "controlled-local-baseline",
+    "page": "/crypto.html",
+    "mobile": {
+      "runs": 5,
+      "medianPerformance": 74,
+      "medianAccessibility": 91,
+      "medianLcpMs": 4779.505700000001,
+      "medianCls": 0.02442864868464191,
+      "medianTbtMs": 15.5
+    },
+    "desktop": {
+      "runs": 5,
+      "medianPerformance": 96,
+      "medianAccessibility": 91,
+      "medianLcpMs": 1201.7653000000005,
+      "medianCls": 0.004156709788985202,
+      "medianTbtMs": 0
+    }
+  },
+  "final": {
+    "revision": "b5c9a08421f17cb2104a678d95a2007a23e092cc",
+    "kind": "controlled-local-final-candidate",
+    "page": "/",
+    "mobile": {
+      "runs": 5,
+      "medianPerformance": 99,
+      "medianAccessibility": 100,
+      "medianLcpMs": 2107.9067999999997,
+      "medianCls": 0.01184834123222749,
+      "medianTbtMs": 0
+    },
+    "desktop": {
+      "runs": 5,
+      "medianPerformance": 100,
+      "medianAccessibility": 100,
+      "medianLcpMs": 442.56585,
+      "medianCls": 0,
+      "medianTbtMs": 0
+    }
+  },
+  "delta": {
+    "mobilePerformance": 25,
+    "mobileAccessibility": 9,
+    "mobileLcpMs": -2671.598900000001,
+    "mobileCls": -0.012580307452414419
+  }
+}

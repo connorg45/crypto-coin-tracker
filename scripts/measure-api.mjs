@@ -25,9 +25,12 @@ const paths = [
   "/api/sentiment",
 ];
 
-await fetch(new URL("/api/markets", deploymentUrl), {
-  headers: { Accept: "application/json" },
-});
+for (const path of paths) {
+  const response = await fetch(new URL(path, deploymentUrl), {
+    headers: { Accept: "application/json" },
+  });
+  await response.arrayBuffer();
+}
 const samples = [];
 for (let index = 0; index < requestCount; index += 1) {
   const path = paths[index % paths.length];
@@ -66,7 +69,7 @@ const summary = {
   deploymentUrl,
   requestCount,
   cacheHitOrStaleRate: hitOrStale / requestCount,
-  thirdPartyRequestsAvoidedByFreshHits: hits,
+  freshCacheHits: hits,
   p50Ms: percentile(0.5),
   p95Ms: percentile(0.95),
   errorRate:

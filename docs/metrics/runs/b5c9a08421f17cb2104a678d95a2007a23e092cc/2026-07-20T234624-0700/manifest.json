@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "revision": "b5c9a08421f17cb2104a678d95a2007a23e092cc",
+  "kind": "controlled-local-final-candidate",
+  "recordedAt": "2026-07-20T23:46:24-07:00",
+  "page": "/",
+  "deploymentUrl": null,
+  "runner": {
+    "os": "macOS Darwin 25.5.0 arm64",
+    "node": "24.1.0",
+    "lighthouse": "12.6.1",
+    "chrome": "150.0.0.0",
+    "playwright": "1.61.1",
+    "region": "local; America/Los_Angeles"
+  },
+  "method": {
+    "build": "npm run build",
+    "fixtures": "node scripts/preview-with-fixtures.mjs; deterministic 50-record normalized market envelope plus detail, chart, and sentiment fixtures",
+    "mobile": "five Lighthouse runs with the standard simulated-mobile profile",
+    "desktop": "five Lighthouse runs with the Lighthouse desktop preset",
+    "webVitals": "twenty mobile Chromium flows with 150 ms latency, 1.6 Mbps down, 750 Kbps up, and 4x CPU slowdown",
+    "quality": "npm test; npm audit --audit-level=high; npm run bundle:check"
+  },
+  "limitations": [
+    "This is a local controlled lab run with deterministic API fixtures, not field data or user traffic.",
+    "Cloudflare cache-hit rate, production p50/p95 latency, third-party requests avoided, and production error rate remain unmeasured until account authorization and deployment are complete.",
+    "The local Web Vitals harness exercises application interactions; it does not represent real-user monitoring."
+  ]
+}

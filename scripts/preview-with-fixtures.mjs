@@ -24,8 +24,30 @@ const coin = {
   change7d: -1.2,
   sparkline7d: [62000, 63000, 61500, 64000],
 };
+const coins = Array.from({ length: 50 }, (_, index) => {
+  if (index === 0) return coin;
+  const rank = index + 1;
+  const currentPrice = 64000 / rank;
+  return {
+    id: `fixture-asset-${rank}`,
+    symbol: `fx${rank}`,
+    name: `Fixture Asset ${rank}`,
+    image: null,
+    currentPrice,
+    marketCap: 1260000000000 / rank,
+    marketCapRank: rank,
+    change24h: rank % 2 === 0 ? -0.8 : 1.6,
+    change7d: rank % 3 === 0 ? -1.2 : 4.1,
+    sparkline7d: [
+      currentPrice * 0.94,
+      currentPrice * 0.97,
+      currentPrice * 0.96,
+      currentPrice,
+    ],
+  };
+});
 const endpoints = new Map([
-  ["/api/markets", [coin]],
+  ["/api/markets", coins],
   [
     "/api/sentiment",
     {
